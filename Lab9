@@ -41,3 +41,12 @@ word_length_counts = count_words_by_length('TF4_1.txt')
 with open('TF4_2.txt', 'w', encoding='utf-8') as file:
     for length, count in sorted(word_length_counts.items()):
         file.write(f'Слово з {length} символів: {count}\n')
+#Частина в:
+# Читання вмісту файла TF4_2 і виведення на екран
+with open('TF4_2.txt', 'r', encoding='utf-8') as file:
+    content = file.readlines()
+
+# Виведення кожного рядка на екран
+for line in content:
+    print(line.strip())
+
