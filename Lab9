@@ -7,3 +7,37 @@ text = """Привіт, це перший приклад тексту.
 # Записуємо вміст у файл TF4_1
 with open('TF4_1.txt', 'w', encoding='utf-8') as file:
     file.write(text)
+#Частина б:
+import string
+
+# Функція для підрахунку слів за їхньою довжиною
+def count_words_by_length(file_name):
+    word_length_counts = {}
+
+    # Читання файлу TF4_1
+    with open(file_name, 'r', encoding='utf-8') as file:
+        content = file.read()
+
+    # Видалення розділових знаків
+    translator = str.maketrans('', '', string.punctuation)
+
+    content = content.translate(translator)
+
+    # Розділення на слова та підрахунок довжини кожного слова
+    words = content.split()
+    for word in words:
+        length = len(word)
+        if length <= 16:  # Ігноруємо слова більше 16 символів
+            if length not in word_length_counts:
+                word_length_counts[length] = 0
+            word_length_counts[length] += 1
+
+    return word_length_counts
+
+# Отримання кількості слів за довжиною
+word_length_counts = count_words_by_length('TF4_1.txt')
+
+# Запис результатів у файл TF4_2
+with open('TF4_2.txt', 'w', encoding='utf-8') as file:
+    for length, count in sorted(word_length_counts.items()):
+        file.write(f'Слово з {length} символів: {count}\n')
